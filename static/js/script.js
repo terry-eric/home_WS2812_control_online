@@ -14,9 +14,9 @@ const client = mqtt.connect('wss://public:public@public.cloud.shiftr.io', {
 
 client.on('connect', function () {
     console.log('connected!');
-    client.subscribe('hello');
-    client.subscribe('color');
-    client.subscribe('mode');
+    client.subscribe('control/online/hello');
+    client.subscribe('control/online/color');
+    client.subscribe('control/online/mode');
 });
 
 client.on('message', function (topic, message) {

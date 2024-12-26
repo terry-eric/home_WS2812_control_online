@@ -1,0 +1,121 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+}
+.ui-panel {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin: auto;
+    max-width: 600px;
+}
+.ui-button {
+    background: linear-gradient(to right, #4facfe 0%,#00f2fe 100%);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 16px;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+.ui-button:hover {
+    background: linear-gradient(to right, #00f2fe 0%,#4facfe 100%);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+.ui-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+.color-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.color-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+.color-button:hover {
+    transform: scale(1.1);
+}
+.input-color {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.input-color input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+.slider-container {
+    margin: 20px 0;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+.slider:hover {
+    opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+#video {
+    width: 100%; /* 或具體的像素值，例如 300px */
+    height: 300px; /* 框框的高度 */
+    object-fit: cover; /* 確保視頻內容填滿框框，可能會裁剪部分內容 */
+    border: 2px solid #000; /* 可選：加一個邊框 */
+    border-radius: 10px; /* 可選：圓角邊框 */
+    display: block;
+    margin: 0 auto;
+}
+
+/* 父容器樣式，提供額外空間 */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* 在視頻上方留空間 */
+}

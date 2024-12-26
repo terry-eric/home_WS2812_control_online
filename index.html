@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 控制中心</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.3.0/mqtt.min.js"
+        integrity="sha512-EnLWfFOiB6GDdNvKy8FM7IULPVCvM2aKxtUu6BFlLFvzWbn4isS7ew3yWFnI7fnSPhC3ARyiWMhL9w09JbAHEg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/mqtt@4.1.0/dist/mqtt.min.js"></script>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icon/Bee-icon.png">
+    <link rel="icon" href="icon/favicon.ico">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+
+    <div class="ui-panel">
+        <h1 class="ui-title">ESP32 控制中心</h1>
+
+        <div class="button-group">
+            <button class="ui-button" id="mode-button">更換模式</button>
+            <button class="ui-button" id="light-switch">電燈開關</button>
+        </div>
+
+        <div class="color-buttons">
+            <!-- 預設顏色按鈕 -->
+            <div class="color-button" style="background-color: rgb(0, 0, 0);" onclick="setColor('rgb(0, 0, 0)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 255, 255);"
+                onclick="setColor('rgb(255, 255, 255)')"></div>
+            <!-- 其他顏色按鈕 -->
+            <div class="color-button" style="background-color: rgb(255, 0, 0);" onclick="setColor('rgb(255, 0, 0)')">
+            </div>
+            <div class="color-button" style="background-color: rgb(0, 255, 0);" onclick="setColor('rgb(0, 255, 0)')">
+            </div>
+            <div class="color-button" style="background-color: rgb(0, 0, 255);" onclick="setColor('rgb(0, 0, 255)')">
+            </div>
+            <div class="color-button" style="background-color: rgb(255, 255, 0);"
+                onclick="setColor('rgb(255, 255, 0)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 0, 255);"
+                onclick="setColor('rgb(255, 0, 255)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 165, 0);"
+                onclick="setColor('rgb(255, 165, 0)')"></div>
+            <div class="color-button" style="background-color: rgb(128, 128, 128);"
+                onclick="setColor('rgb(128, 128, 128)')"></div>
+            <div class="color-button" style="background-color: rgb(173, 216, 230);"
+                onclick="setColor('rgb(173, 216, 230)')"></div>
+            <div class="color-button" style="background-color: rgb(144, 238, 144);"
+                onclick="setColor('rgb(144, 238, 144)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 192, 203);"
+                onclick="setColor('rgb(255, 192, 203)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 255, 224);"
+                onclick="setColor('rgb(255, 255, 224)')"></div>
+            <div class="color-button" style="background-color: rgb(255, 215, 0);"
+                onclick="setColor('rgb(255, 215, 0)')"></div>
+            <div class="color-button" style="background-color: rgb(230, 230, 250);"
+                onclick="setColor('rgb(230, 230, 250)')"></div>
+            <div class="color-button" style="background-color: rgb(75, 0, 130);" onclick="setColor('rgb(75, 0, 130)')">
+            </div>
+        </div>
+
+        <div class="input-color">
+            <input type="text" id="color-input" placeholder="輸入顏色值，例如 rgb(255, 0, 0)" />
+            <button class="ui-button" id="color-send" onclick="setColorFromInput()" style="display: none;">設置顏色</button>
+        </div>
+
+        <div class="slider-container">
+            <label for="color-temperature-slider">色溫調節: </label>
+            <input type="range" min="1000" max="10000" value="6500" step="1" class="slider"
+                id="color-temperature-slider">
+        </div>
+
+        <div id="color-picker-container" style="display: flex; align-items: center; justify-content: center;"></div>
+        <!-- <div class="video-container">
+            <video id="video" autoplay playsinline></video>
+        </div> -->
+    </div>
+
+    <script>
+        // a2hs https://github.com/mdn/pwa-examples/tree/main/a2hs
+        // Register service worker to control making site work offline 
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/home_WS2812_control/static/js/sw.js')
+                .then(() => { console.log('Service Worker Registered'); });
+        }
+
+    </script>
+
+    <!-- <script>
+        async function startCamera() {
+            try {
+                // 請求相機存取權限
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+                // 將相機影像流傳送到 video 元素
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('無法存取相機：', error);
+                alert('無法存取相機，請確認是否已授權相機存取權限。');
+            }
+        }
+
+        // 啟動相機
+        startCamera();
+    </script> -->
+
+    <script src="./static/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5.5.0/dist/iro.min.js"></script>
+
+
+</body>
+
+</html>

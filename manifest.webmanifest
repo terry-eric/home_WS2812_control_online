@@ -1,0 +1,15 @@
+{
+    "background_color": "white",
+    "description": "Bee",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "icon/Bee-icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "Bee APP",
+    "short_name": "Bee",
+    "start_url": "/home_WS2812_control/index.html"
+}

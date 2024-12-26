@@ -1,8 +1,8 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
         caches.open('fox-store').then((cache) => cache.addAll([
-            '/home_WS2812_control/static/css/sytle.css',
-            '/home_WS2812_control/static/js/index.js',
+            '/home_WS2812_control_online/static/css/sytle.css',
+            '/home_WS2812_control_online/static/js/index.js',
         ])),
     );
 });

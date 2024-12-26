@@ -33,7 +33,7 @@ function rgbArrayToString(rgbArray) {
 function sendColorToMQTT(rgbArray) {
     var colorString = rgbArrayToString(rgbArray);
     // client.publish('hello', colorString);
-    client.publish('color', colorString);
+    client.publish('control/online/color', colorString);
 }
 
 // 更換顏色按鈕的事件處理器，當按下時發送顏色到MQTT
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // 更新RGB陣列
         rgbArray = [color.rgb.r, color.rgb.g, color.rgb.b];
-        client.publish("color", `0x${color.rgb.r.toString(16).padStart(2, '0')}${color.rgb.g.toString(16).padStart(2, '0')}${color.rgb.b.toString(16).padStart(2, '0')}`);
+        client.publish("control/online/color", `0x${color.rgb.r.toString(16).padStart(2, '0')}${color.rgb.g.toString(16).padStart(2, '0')}${color.rgb.b.toString(16).padStart(2, '0')}`);
         // client.publish("hello", `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`)
     });
 });
@@ -94,7 +94,7 @@ document.getElementById('mode-button').addEventListener('click', function () {
         i=1;
     }
     console.log('更換模式');
-    client.publish("mode", `${i}`);
+    client.publish("control/online/mode", `${i}`);
 });
 
 let isLightOn = false;  // 初始狀態設定為關閉   
@@ -105,9 +105,9 @@ document.getElementById('light-switch').addEventListener('click', function () {
     console.log('電燈開關');
     
     if(isLightOn){
-        client.publish("color", `0x000000`);
+        client.publish("control/online/color", `0x000000`);
     }else{
-        client.publish("color", `0x${rgbArray[0].toString(16).padStart(2, '0')}${rgbArray[1].toString(16).padStart(2, '0')}${rgbArray[2].toString(16).padStart(2, '0')}`);
+        client.publish("control/online/color", `0x${rgbArray[0].toString(16).padStart(2, '0')}${rgbArray[1].toString(16).padStart(2, '0')}${rgbArray[2].toString(16).padStart(2, '0')}`);
     }
 
 });
